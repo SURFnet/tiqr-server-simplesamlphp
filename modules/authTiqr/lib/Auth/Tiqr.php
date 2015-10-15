@@ -413,6 +413,13 @@ class sspmod_authTiqr_Auth_Tiqr
         $server = self::getServer(true); 
         $responseObj = self::getResponse();
 
+        if (isset($request['notificationType']) && isset($request['notificationAddress'])) {
+            // validate the notification address
+            if (!preg_match("/^[a-f0-9]+$/i", $request['notificationAddress'])) {
+                return $responseObj->getEnrollmentErrorResponse();
+            }
+        }
+
         $userId = $server->validateEnrollmentSecret($request["key"]);
         if ($userId !== false) {
             $store = self::getUserStorage();
