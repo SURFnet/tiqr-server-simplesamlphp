@@ -1,6 +1,6 @@
 <?php
 
-require_once('../../simplesamlphp/lib/_autoload.php');
+require_once('./simplesamlphp/lib/_autoload.php');
 
 function renderTemplate($file, $data=array())
 {
